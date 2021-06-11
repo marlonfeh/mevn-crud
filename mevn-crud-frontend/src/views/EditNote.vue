@@ -10,7 +10,7 @@
         gap-y-8
       "
     >
-      <!--Loading Spinner-->
+      <!--Loading Spinner Section-->
       <div v-if="isLoading">
         <loading-spinner></loading-spinner>
       </div>
