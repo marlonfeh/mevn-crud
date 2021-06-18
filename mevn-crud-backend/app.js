@@ -27,7 +27,7 @@ mongoose
   .then(() => console.log('mongoDB connected Successfully'))
   .catch((err) => console.log(err));
 
-// simple route
+//Simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to my REST API application." });
 });
@@ -40,9 +40,19 @@ app.use((req, res, next) => {
 //Simulated Latency
 app.use(function(req,res,next){setTimeout(next,1000)});
 
-// note routes
+//Note routes
 app.use('/notes', notesRoutes);
+//Auth routes
 app.use('/auth', authRoutes);
+
+//Error Handling
+app.use((error, req, res, next) => {
+  console.log(error);
+  const status = error.statusCode || 500;
+  const message = error.message;
+  const data = error.data;
+  res.status(status).json({ message: message, data: data });
+});
 
 const PORT = process.env.PORT || 8080;
 
