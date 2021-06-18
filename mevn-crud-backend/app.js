@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 const notesRoutes = require('./routes/notes');
+const authRoutes = require('./routes/auth');
 
 var corsOptions = {
   origin: 'http://localhost:8081',
@@ -31,11 +32,17 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to my REST API application." });
 });
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 //Simulated Latency
 app.use(function(req,res,next){setTimeout(next,1000)});
 
 // note routes
 app.use('/notes', notesRoutes);
+app.use('/auth', authRoutes);
 
 const PORT = process.env.PORT || 8080;
 
