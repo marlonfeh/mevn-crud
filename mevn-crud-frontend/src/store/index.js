@@ -1,21 +1,25 @@
 import { createStore } from 'vuex'
 
 import notesModule from './modules/notes/index.js';
+import userModule from './modules/user/index.js';
 
 const store = createStore({
   modules: {
     notes: notesModule,
+    user: userModule,
   },
   state() {
     return {
-      userId: 'c3',
-      username: 'Test User',
       isLoading: false,
+      //Implement
       isLoadingSpecificNote: false,
       error: null
     };
   },
   getters: {
+    isLoggedIn(state) {
+      return state.isLoggedIn;
+    },
     userId(state) {
       return state.userId;
     },

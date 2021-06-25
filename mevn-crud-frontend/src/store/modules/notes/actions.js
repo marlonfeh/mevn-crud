@@ -2,8 +2,13 @@ import axios from 'axios';
 
 export default {
   async fetchNotes(context) {
+    const token = context.rootGetters["user/token"]
     await axios
-      .get('http://localhost:8080/notes/')
+      .get('http://localhost:8080/notes/', {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
       .then(res => {
         console.log(res.data.notes)
         context.commit('fetchNotes', res.data)

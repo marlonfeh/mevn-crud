@@ -5,13 +5,13 @@ const isAuth = require('../middlewares/is-auth');
 
 const router = express.Router();
 
-// POST /user
+// POST /notes
 router.post('/', isAuth, notesController.create);
 
-// GET /user
+// GET /notes
 router.get('/', isAuth, notesController.getAll);
 
-// GET /user
+// GET /notes
 router.get('/:noteId', isAuth, notesController.getNote);
 
 // PUT

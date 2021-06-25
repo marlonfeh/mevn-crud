@@ -67,7 +67,13 @@ exports.login = (req, res, next) => {
         'secretkeyTest',
         { expiresIn: '1h' }
       );
-      res.status(200).json({ token: token, userId: loadedUser._id.toString() });
+      res.status(200).json({ 
+        message: 'User logged in successfully!', 
+        token: token,
+        expiresIn: 3600,
+        //Rausnehmen
+        userId: loadedUser._id.toString(), 
+      });
     })
     .catch(err => {
       if (!err.statusCode) {
@@ -76,3 +82,7 @@ exports.login = (req, res, next) => {
       next(err);
     });
 };
+
+//Get UserId
+
+//Get Userdata by ID
