@@ -70,6 +70,7 @@
         </button>
       </div>
     </div>
+    <p>{{ isLoggedIn }}</p>
   </form>
 </template>
 
@@ -87,6 +88,11 @@ export default {
         isValid: true,
       },
     };
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters["user/isLoggedIn"];
+    },
   },
   methods: {
     async submitForm() {

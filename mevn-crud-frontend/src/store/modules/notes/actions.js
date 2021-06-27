@@ -3,6 +3,12 @@ import axios from 'axios';
 export default {
   async fetchNotes(context) {
     const token = context.rootGetters["user/token"]
+    
+
+    if(token===null) return
+
+    console.log(token)
+
     await axios
       .get('http://localhost:8080/notes/', {
         headers: {
@@ -61,5 +67,8 @@ export default {
       }, (error) => {
         console.log(error);
       });
+  },
+  clearNotesStore(){
+    //mit Logout verbinden
   }
 };

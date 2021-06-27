@@ -16,8 +16,8 @@ export default {
     return {
       isLoggedIn: false,
       //Check cookie
-      token: localStorage.getItem('token') || null,
-      userId: localStorage.getItem('userId') || null,
+      token: null,
+      userId: null,
       username: null,
     };
   },

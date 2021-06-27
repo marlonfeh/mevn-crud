@@ -1,18 +1,19 @@
 import axios from 'axios';
+import router from '../../../router/index.js'
 
 export default {
   tryLogin(context) {
+    const token = localStorage.getItem('token');
+    const tokenExpiration = localStorage.getItem('tokenExpiration');
+    const expiresIn = +tokenExpiration - new Date().getTime();
 
-    //Verify JWT
-    //check expiration date
+    console.log("tryLogin, expiresIn: " + expiresIn)
 
-
-    //call userid auth-route
-
-
-    if(context.getters.token){
-      context.commit('toggleIsLoggedIn')
+    if (expiresIn < 0) {
+      return;
     }
+
+    context.commit('setIsLoggedIn', token)
   },
   async loginUser(context, data) {
     await axios
@@ -29,8 +30,8 @@ export default {
 
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('tokenExpiration', expirationDate);
-        //rausnehmen
-        localStorage.setItem('userId', res.data.userId);
+
+        router.push('/home')
           
       }, (error) => {
         console.log(error);
@@ -39,8 +40,10 @@ export default {
   logoutUser(context) {
     localStorage.removeItem('token');
     localStorage.removeItem('tokenExpiration');
-    //rausnehmen
-    localStorage.removeItem('userId');
     context.commit('logoutUser')
+
+    router.push('/login')
+
+    //Clear Notes in Store
   },
 };

@@ -56,20 +56,6 @@
             hover:bg-white
             hover:text-blue-500
           "
-          >Login</router-link
-        >
-        <router-link
-          v-if="!isLoggedIn"
-          to="/login"
-          class="
-            px-3
-            py-1
-            rounded-full
-            text-white
-            bg-blue-400
-            hover:bg-white
-            hover:text-blue-500
-          "
           >Register</router-link
         >
         <button
@@ -103,6 +89,7 @@ export default {
     logoutUser() {
       console.log("click");
       this.$store.dispatch("user/logoutUser");
+      //this.$router.replace("/login");
     },
   },
 };

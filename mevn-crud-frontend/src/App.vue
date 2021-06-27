@@ -27,27 +27,13 @@ export default {
       }
       this.$store.dispatch("toggleLoading");
     },
-    tryLogin() {
-      this.$store.dispatch("user/tryLogin");
-    },
   },
   created() {
     //Reset error in vuex?
 
-    //Interceptor to catch expired jwt tokens
-    /*
-    this.$http.interceptors.response.use(undefined, function (err) {
-      return new Promise(function (resolve, reject) {
-        if (err.status === 401 && err.config && !err.config.__isRetryRequest) {
-          this.$store.dispatch(logout);
-        }
-        throw err;
-      });
-    });
-    */
-
-    this.tryLogin();
-    this.fetchNotes();
+    this.$store.dispatch("user/tryLogin");
+    //Only fetch notes if login successfull
+    //this.fetchNotes();
   },
 };
 </script>

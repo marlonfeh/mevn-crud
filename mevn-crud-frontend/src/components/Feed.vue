@@ -139,5 +139,10 @@ export default {
       this.$store.dispatch("toggleLoading");
     },
   },
+  created() {
+    if (this.$store.getters["notes/notes"].length === 0) {
+      this.fetchNotes();
+    }
+  },
 };
 </script>
