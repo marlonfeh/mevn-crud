@@ -68,7 +68,7 @@ export default {
         console.log(error);
       });
   },
-  clearNotesStore(){
-    //mit Logout verbinden
+  clearNotesStore(context){
+    context.commit('deleteAll')
   }
 };

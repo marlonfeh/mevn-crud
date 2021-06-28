@@ -46,7 +46,7 @@
       <div class="flex justify-start space-x-4 py-2 px-4">
         <router-link
           v-if="!isLoggedIn"
-          to="/login"
+          to="/sign-up"
           class="
             px-3
             py-1
@@ -56,7 +56,7 @@
             hover:bg-white
             hover:text-blue-500
           "
-          >Register</router-link
+          >Sign Up</router-link
         >
         <button
           v-else

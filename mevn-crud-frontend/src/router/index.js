@@ -3,6 +3,7 @@ import store from '../store/index.js'
 
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
+import SignUp from '../views/SignUp.vue'
 import AddNote from '../views/AddNote.vue'
 import EditNote from '../views/EditNote.vue'
 import NotFound from '../views/NotFound.vue'
@@ -17,11 +18,6 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: Login
-  },
-  {
     path: '/add-note',
     name: 'AddNote',
     component: AddNote,
@@ -32,6 +28,17 @@ const routes = [
     props: true, 
     meta: { requiresAuth: true }
   },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/sign-up',
+    name: 'Sign-Up',
+    component: SignUp
+  },
+  
   { path: '/:notFound(.*)', component: NotFound }
 ]
 
@@ -53,19 +60,5 @@ router.beforeEach((to) => {
     }
   }
 })
-
-/*
-router.beforeEach((to, from, next) => {
-  if (to.meta.requireAuth) {
-    if (!store.getters['user/isLoggedIn']) {
-      next("/login");
-    } else {
-      next()
-    }
-  } else {
-    next();
-  }
-});
-*/
 
 export default router

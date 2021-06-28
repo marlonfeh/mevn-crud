@@ -33,17 +33,32 @@ export default {
 
         router.push('/home')
           
-      }, (error) => {
-        console.log(error);
+      });
+  },
+  async signupUser(context, data) {
+    await axios
+      .put('http://localhost:8080/auth/signup', {
+        name: data.username,
+        email: data.email,
+        password: data.password,
+      })
+      .then((res) => {
+        console.log(res.data);
+
+        console.log(data)
+
+
+        //Überarbeiten
+        context.dispatch('loginUser', data)
       });
   },
   logoutUser(context) {
     localStorage.removeItem('token');
     localStorage.removeItem('tokenExpiration');
     context.commit('logoutUser')
-
-    router.push('/login')
-
     //Clear Notes in Store
+    context.dispatch('notes/clearNotesStore', null, { root: true })
+
+    router.push('/login')    
   },
 };
